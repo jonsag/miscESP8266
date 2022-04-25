@@ -23,156 +23,88 @@ All text above, and the splash screen must be included in any redistribution
 
 void setup()
 {
-  //Serial.begin(9600);
+#if DEBUG
+  Serial.begin(9600);
+#endif
 
-  Wire.begin(SDA, SCL);
-
-  //Serial.println("Starting display ...");
   // SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
-  if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
-    //Serial.println(F("SSD1306 allocation failed"));
-    for(;;); // Don't proceed, loop forever
+  if (!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS))
+  {
+    debugMessln("SSD1306 allocation failed");
+    for (;;)
+      ; // Don't proceed, loop forever
   }
-  // init done
 
-  // Wire.setClock(400000L);   // uncomment this to set I2C clock to 400kHz
+  // Show initial display buffer contents on the screen --
+  // the library initializes this with an Adafruit splash screen.
+  debugMessln("Test 1/16: splash screen ...");
+  display.display();
+  delay(2000); // Pause for 2 seconds
 
-  // Show image buffer on the display hardware.
-  // Since the buffer is intialized with an Adafruit splashscreen
-  // internally, this will display the splashscreen.
-  //Serial.println("Splash screen ...");
+  // Clear the buffer
+  display.clearDisplay();
+
+  // Draw a single pixel in white
+  debugMessln("Test 2/16: single pixel ...");
+  display.drawPixel(10, 10, SSD1306_WHITE);
+
+  // Show the display buffer on the screen. You MUST call display() after
+  // drawing commands to make them visible on screen!
   display.display();
   delay(2000);
+  // display.display() is NOT necessary after every single drawing command,
+  // unless that's what you want...rather, you can batch up a bunch of
+  // drawing operations and then update the screen all at once by calling
+  // display.display(). These examples demonstrate both approaches...
 
-  // Clear the buffer.
-  //Serial.println("Clear display ...");
-  display.clearDisplay();
+  debugMessln("Test 2/16: lines ...");
+  testdrawline(); // Draw many lines
 
-  // draw a single pixel
-  //Serial.println("Test 1/15: single pixel ...");
-  display.drawPixel(10, 10, WHITE);
-  // Show the display buffer on the hardware.
-  // NOTE: You _must_ call display after making any drawing commands
-  // to make them visible on the display hardware!
-  display.display();
-  delay(2000);
+  debugMessln("Test 3/16: rectangles ...");
+  testdrawrect(); // Draw rectangles (outlines)
 
-  display.clearDisplay();
+  debugMessln("Test 4/16: filled rectangles ...");
+  testfillrect(); // Draw rectangles (filled)
 
-  // draw many lines
-  //Serial.println("Test 2/15: lines ...");
-  testdrawline();
-  display.display();
-  delay(2000);
+  debugMessln("Test 5/16: circles ...");
+  testdrawcircle(); // Draw circles (outlines)
 
-  display.clearDisplay();
+  debugMessln("Test 6/16: filled circles ...");
+  testfillcircle(); // Draw circles (filled)
 
-  // draw rectangles
-  //Serial.println("Test 3/15: rectangles ...");
-  testdrawrect();
-  display.display();
-  delay(2000);
+  debugMessln("Test 7/16: rounded rectangles ...");
+  testdrawroundrect(); // Draw rounded rectangles (outlines)
 
-  display.clearDisplay();
+  debugMessln("Test 8/16: filled rounded rectangles ...");
+  testfillroundrect(); // Draw rounded rectangles (filled)
 
-  // draw multiple rectangles
-  //Serial.println("Test 4/15: rectangles ...");
-  testfillrect();
-  display.display();
-  delay(2000);
+  debugMessln("Test 9/16: triangles ...");
+  testdrawtriangle(); // Draw triangles (outlines)
 
-  display.clearDisplay();
+  debugMessln("Test 10/16: filled triangles ...");
+  testfilltriangle(); // Draw triangles (filled)
 
-  // draw multiple circles
-  //Serial.println("Test 5/15: circles ...");
-  testdrawcircle();
-  display.display();
-  delay(2000);
+  debugMessln("Test 11/16: characters ...");
+  testdrawchar(); // Draw characters of the default font
 
-  display.clearDisplay();
+  debugMessln("Test 12/16: stylized characters ...");
+  testdrawstyles(); // Draw 'stylized' characters
 
-  // draw a white circle, 10 pixel radius
-  //Serial.println("Test 6/15: fill circle ...");
-  display.fillCircle(display.width() / 2, display.height() / 2, 10, WHITE);
-  display.display();
-  delay(2000);
+  debugMessln("Test 13/16: scrolling text ...");
+  testscrolltext(); // Draw scrolling text
 
-  display.clearDisplay();
+  debugMessln("Test 14/16: bitmap ...");
+  testdrawbitmap(); // Draw a small bitmap image
 
-  //Serial.println("Test 7/15: round rectangle ...");
-  testdrawroundrect();
-  delay(2000);
-
-  display.clearDisplay();
-
-  //Serial.println("Test 8/15: fill round rectangle ...");
-  testfillroundrect();
-  delay(2000);
-
-  display.clearDisplay();
-
-  //Serial.println("Test 9/15: triangle ...");
-  testdrawtriangle();
-  delay(2000);
-
-  display.clearDisplay();
-
-  //Serial.println("Test 10/15: fill triangle ...");
-  testfilltriangle();
-  delay(2000);
-
-  display.clearDisplay();
-
-  // draw the first ~12 characters in the font
-  //Serial.println("Test 10/15: characters ...");
-  testdrawchar();
-  display.display();
-  delay(2000);
-
-  display.clearDisplay();
-
-  // draw scrolling text
-  //Serial.println("Test 11/15: scroll text ...");
-  testscrolltext();
-  delay(2000);
-
-  display.clearDisplay();
-
-  // text display tests
-  //Serial.println("Test 12/15: text ...");
-  display.setTextSize(1);
-  display.setTextColor(WHITE);
-  display.setCursor(0, 0);
-  display.println("Hello, world!");
-  display.setTextColor(BLACK, WHITE); // 'inverted' text
-  display.println(3.141592);
-  display.setTextSize(2);
-  display.setTextColor(WHITE);
-  display.print("0x");
-  display.println(0xDEADBEEF, HEX);
-  display.display();
-  delay(2000);
-
-  display.clearDisplay();
-
-  // miniature bitmap display
-  //Serial.println("Test 13/15: bitmap ...");
-  display.drawBitmap(30, 16, logo16_glcd_bmp, 16, 16, 1);
-  display.display();
-  delay(1);
-
-  // invert the display
-  //Serial.println("Test 14/15: invert ...");
+  // Invert and restore display, pausing in-between
+  debugMessln("Test 15/16: invert and restore display ...");
   display.invertDisplay(true);
   delay(1000);
   display.invertDisplay(false);
   delay(1000);
 
-  display.clearDisplay();
-
-  // draw a bitmap icon and 'animate' movement
-  //Serial.println("Test 15/15: animate ...");
-  testdrawbitmap(logo16_glcd_bmp, LOGO16_GLCD_HEIGHT, LOGO16_GLCD_WIDTH);
+  debugMessln("Test 16/16: animate ...");
+  testanimate(logo_bmp, LOGO_WIDTH, LOGO_HEIGHT); // Animate bitmaps
 }
 
 void loop()
