@@ -9,6 +9,14 @@
 #define debugMessln(x)
 #endif
 
+/*
+Pins on the ESP-01
+Pin         Input       Output
+5   GPIO0   pulled up   OK          connected to FLASH button, boot fails if pulled LOW
+2   GPIO1   TX pin      OK          HIGH at boot, debug output at boot, boot fails if pulled LOW
+3   GPIO2   pulled up   OK          HIGH at boot, connected to on-board LED, boot fails if pulled LOW
+7   GPIO3   OK          RX pin      HIGH at boot
+*/
 // set I2C pins (SDA = GPIO2, SCL = GPIO0), default clock is 100kHz
 #define SDA 2
 #define SCL 0
