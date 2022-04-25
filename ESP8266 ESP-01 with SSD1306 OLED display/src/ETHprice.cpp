@@ -59,8 +59,8 @@ HTTPClient https;
 #define LOGO_HEIGHT 38
 
 const char *apiURL = "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD";
-// ETH logo
 
+// ETH logo
 const unsigned char eth[] PROGMEM = {
     0x00, 0x00, 0x00, 0x00, 0x30, 0x00, 0x00, 0x30, 0x00, 0x00, 0x78, 0x00, 0x00, 0x78, 0x00, 0x00,
     0xfc, 0x00, 0x01, 0xfe, 0x00, 0x01, 0xfe, 0x00, 0x03, 0xff, 0x00, 0x03, 0xff, 0x00, 0x07, 0xff,
@@ -193,7 +193,7 @@ void connect()
 void setup()
 {
     Serial.begin(115200);
-    Wire.pins(2, 0);
+    Wire.pins(SDA,SCL);
 
     // SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
     if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C))

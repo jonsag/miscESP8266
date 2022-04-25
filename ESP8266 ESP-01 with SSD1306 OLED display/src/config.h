@@ -17,7 +17,7 @@ Pin         Input       Output
 3   GPIO2   pulled up   OK          HIGH at boot, connected to on-board LED, boot fails if pulled LOW
 7   GPIO3   OK          RX pin      HIGH at boot
 */
-// set I2C pins (SDA = GPIO2, SCL = GPIO0), default clock is 100kHz
+// set I2C pins (SDA = GPIO2, SCL = GPIO0)
 #define SDA 2
 #define SCL 0
 
