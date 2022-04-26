@@ -29,7 +29,7 @@ void setup()
 #endif
 
     debugMessln("Set up wire ...");
-    Wire.pins(SDA, SCL);
+    Wire.begin(screenSDA, screenSCL);
 
   // SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
   if (!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS))

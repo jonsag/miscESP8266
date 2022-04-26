@@ -18,8 +18,8 @@ Pin         Input       Output
 7   GPIO3   OK          RX pin      HIGH at boot
 */
 // set I2C pins (SDA = GPIO2, SCL = GPIO0)
-#define SDA 2
-#define SCL 0
+#define screenSDA 2
+#define screenSCL 0
 
 #include <SPI.h>
 #include <Wire.h>
