@@ -33,7 +33,7 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 /**********
  * screenTests
  **********/
-/*
+
 #define NUMFLAKES 10 // Number of snowflakes in the animation example
 
 #define LOGO_HEIGHT 16
@@ -56,11 +56,11 @@ static const unsigned char PROGMEM logo_bmp[] =
      0b01111100, 0b11110000,
      0b01110000, 0b01110000,
      0b00000000, 0b00110000};
-*/
+
 /**********
  * ETHprice
  **********/
-
+/*
 // SSL certificate of cryptocompare.com
 const char digicert[] PROGMEM = R"EOF(
 -----BEGIN CERTIFICATE-----
@@ -104,3 +104,4 @@ const unsigned char eth[] PROGMEM = {
     0xe0, 0x0f, 0xcf, 0xc0, 0x07, 0xff, 0x80, 0x03, 0xff, 0x00, 0x03, 0xff, 0x00, 0x01, 0xfe, 0x00,
     0x00, 0xfc, 0x00, 0x00, 0xfc, 0x00, 0x00, 0x78, 0x00, 0x00, 0x30, 0x00, 0x00, 0x30, 0x00, 0x00,
     0x00, 0x00};
+*/
