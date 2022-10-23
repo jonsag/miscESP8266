@@ -5,6 +5,12 @@
   )
 
   (paper "A4")
+  (title_block
+    (title "ESPxx Programmer")
+    (date "2022-10-23")
+    (rev "0.1")
+  )
+
   (layers
     (0 "F.Cu" signal)
     (31 "B.Cu" signal)
@@ -1187,7 +1193,7 @@
   (gr_line (start 69.215 54.61) (end 153.035 54.61) (layer "Edge.Cuts") (width 0.1) (tstamp 3b1528f0-26e0-4843-854c-9aa84dee2733))
   (gr_line (start 153.035 54.61) (end 153.035 102.235) (layer "Edge.Cuts") (width 0.1) (tstamp 50d5d912-686d-404d-933f-10c56541eb09))
   (gr_line (start 69.215 102.235) (end 69.215 54.61) (layer "Edge.Cuts") (width 0.1) (tstamp cdf28e0d-386c-4dc1-9d86-b1634eb07b21))
-  (gr_text "ESPxxProgrammer\nDesign: Jon Sagebrand\ngithub.com/jonsag/miscPCBs" (at 140.97 97.155) (layer "B.Cu") (tstamp 09206bcc-ece9-4e07-9762-1ea93e1b7d6b)
+  (gr_text "${TITLE}-${REVISION}\nDesign: Jon Sagebrand\ngithub.com/jonsag/miscPCBs" (at 140.97 97.155) (layer "B.Cu") (tstamp 09206bcc-ece9-4e07-9762-1ea93e1b7d6b)
     (effects (font (size 1.27 1.27) (thickness 0.254)) (justify left mirror))
   )
   (gr_text "Reset" (at 108.585 90.805) (layer "B.Cu") (tstamp 1a684ff5-bcff-407d-ae44-ff43ef3252b9)
