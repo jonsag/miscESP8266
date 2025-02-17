@@ -2,6 +2,10 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"name": "ESP8266 ESP-01 with SSD1306 OLED display-pio",
+			"path": "ESP8266 ESP-01 with SSD1306 OLED display-pio"
 		}
 	],
 	"settings": {}
